@@ -11,7 +11,7 @@ public class SportStatistics {
         System.out.println("File:");
         String fileName = scan.nextLine();
 
-        try ( Scanner fileScanner = new Scanner(Paths.get(fileName))) {
+        try (Scanner fileScanner = new Scanner(Paths.get(fileName))) {
             while (fileScanner.hasNextLine()) {
                 String fileRow = fileScanner.nextLine();
                 String[] fileRowParts = fileRow.split(",");
@@ -32,10 +32,9 @@ public class SportStatistics {
         int teamLossesCounter = 0;
 
         for (Game game : games) {
-            if (game.getHomeTeamName().equals(searchedTeam) || game.getVisitingTeamName().equals(searchedTeam)) {
+            if (isSearchedTeam(searchedTeam, game)) {
                 teamGamesCounter++;
-                if ((game.getHomeTeamName().equals(searchedTeam) && game.getHomeTeamScore() > game.getVisitingTeamScore())
-                        || (game.getVisitingTeamName().equals(searchedTeam) && game.getHomeTeamScore() < game.getVisitingTeamScore())) {
+                if (isWinningTeam(searchedTeam, game)) {
                     teamWinsCounter++;
                 } else if (game.getHomeTeamScore() != game.getVisitingTeamScore()) {
                     teamLossesCounter++;
@@ -45,6 +44,15 @@ public class SportStatistics {
         System.out.println("Games: " + teamGamesCounter);
         System.out.println("Wins: " + teamWinsCounter);
         System.out.println("Losses: " + teamLossesCounter);
+    }
+
+    private static boolean isWinningTeam(String searchedTeam, Game game) {
+        return (game.getHomeTeamName().equals(searchedTeam) && game.getHomeTeamScore() > game.getVisitingTeamScore())
+                || (game.getVisitingTeamName().equals(searchedTeam) && game.getHomeTeamScore() < game.getVisitingTeamScore());
+    }
+
+    private static boolean isSearchedTeam(String searchedTeam, Game game) {
+        return game.getHomeTeamName().equals(searchedTeam) || game.getVisitingTeamName().equals(searchedTeam);
     }
 
 }
