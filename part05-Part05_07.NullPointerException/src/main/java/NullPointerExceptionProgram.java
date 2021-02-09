@@ -4,6 +4,8 @@ import java.util.ArrayList;
 public class NullPointerExceptionProgram {
 
     public static void main(String[] args) {
+        
+        String errorTrigger = String.valueOf(null);
         // Implement a program, or modify a program so, that it causes 
         // the NullPointerException -error
 
