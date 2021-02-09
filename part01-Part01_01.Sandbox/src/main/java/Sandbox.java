@@ -4,11 +4,29 @@ import java.util.ArrayList;
 public class Sandbox {
 
     public static void main(String[] args) {
-        String[] arrayOfStrings = {"Matti L.", "Matti P.", "Matti V."};
-        double[] arrayOfFloatingpoints = {1.20, 3.14, 100.0, 0.6666666667};
+        ArrayList<Bird> birds = new ArrayList<>();
+        Bird red = new Bird("Red");
 
-        for (int i = 0; i < arrayOfFloatingpoints.length; i++) {
-            System.out.println(arrayOfStrings[i] + " " + arrayOfFloatingpoints[i]);
+        if (birds.contains(red)) {
+            System.out.println("Red is on the list.");
+        } else {
+            System.out.println("Red is not on the list.");
+        }
+
+        birds.add(red);
+        if (birds.contains(red)) {
+            System.out.println("Red is on the list.");
+        } else {
+            System.out.println("Red is not on the list.");
+        }
+
+        System.out.println("However!");
+
+        red = new Bird("Red");
+        if (birds.contains(red)) {
+            System.out.println("Red is on the list.");
+        } else {
+            System.out.println("Red is not on the list.");
         }
     }
 }
