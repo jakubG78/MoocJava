@@ -10,7 +10,9 @@ public class Menu {
     }
 
     public void addMeal(String meal) {
-        this.meals.add(meal);
+        if (!meals.contains(meal)) {
+            this.meals.add(meal);
+        }
     }
 
     public void printMeals() {
